@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <arpa/inet.h>
 #include <net/if.h>
@@ -11,6 +12,11 @@
 
 int main(int argc, char *argv[])
 {
+    if (argc == 1) {
+        printf("usage: %s <interface> [<interface> ..]\n", argv[0]);
+        exit(1);
+    }
+
     struct ifreq ifr;
 
     /* Assume that all args are interface names */
